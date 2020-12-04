@@ -1,10 +1,418 @@
 import com.sun.xml.internal.ws.addressing.WsaActionUtil;
 
 import java.lang.reflect.Array;
+import java.util.Arrays;
+import java.util.Scanner;
+public class hhhh{
+    public int[] multiply(int[] A){
+        int length=A.length;
+        int[] B=new int[length];
+        if(length!=0){
+            B[0]=1;
+            //计算下三角连乘
+            for(int i=1;i<B.length;i++){
+                B[i]=B[i-1]*A[i-1];
+            }
+            int temp=1;
+            //计算上三角
+            for(int j=length-2;j>=0;j--){
+                temp*=A[j+1];
+                B[j]*=temp;
+            }
+        }
+        return B;
+    }
+
+    public static void main(String[] args) {
+
+    }
+}
+
+
+
+
+
+/*
+* 给定一个k位整数N=dk-1*10k-1 +...+ d*101 + do (0<=d<=9 1 -..k1, dk -0),请编写程序统计每种不同的个位数字出现的次数。
+例如:给定N= 100311, 2个0，3个1, 和1个3.
+* 数字(0~9)的ASCLL码是在48到57之间，所以用ASCLL码-48（或者直接减去'0'）来记录数字，把这些数字出现的次数记录在一个数组
+
+*//*
+public class hhhh{
+    static int[] a=new int[10];
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        for(int i=0;i<str.length();i++){
+            a[str.charAt(i)-48]++;//str.charAt(index)index一个介于0 和字符串长度减1之间的整数。 (0~length-1)
+                                  //如果没有提供索引，charAt() 将使用0。
+        }
+        for(int i=0;i<a.length;i++){
+               if(a[i]!=0){
+                   System.out.println(i+":"+a[i]);
+               }
+        }
+    }
+}*/
+
+
+
+/*有一个XxY的网格，一个机器人只能走格点且只能向右或向下走，要从左上角走到右下角。请设计一个算法，计算机器人有多少种走法。
+给定两个正整数int x,int y，请返回机器人的走法数目。保证x＋y小于等于12。
+*//*
+import java.util.Scanner;
+
+public class hhhh{
+    public static int countWays(int x, int y) {
+        // write code here
+        int array[][]=new int [x][y];
+        for(int i=0;i<y;i++){//最上边一行为1
+            array[0][i]=1;
+        }
+        for(int i=0;i<x;i++){//最左边一行为1
+            array[i][0]=1;
+        }
+        for(int row=1;row<x;row++){
+            for(int col=1;col<y;col++){
+                array[row][col]=array[row-1][col]+array[row][col-1];
+            }
+        }
+        return array[x-1][y-1];
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int a=scanner.nextInt();
+        int b=scanner.nextInt();
+        System.out.println(countWays(a,b));
+    }
+}*/
+
+
+
+
+
+/*ibonacci数列是这样定义的：
+F[0] = 0
+F[1] = 1
+for each i ≥ 2: F[i] = F[i-1] + F[i-2]
+因此，Fibonacci数列就形如：0, 1, 1, 2, 3, 5, 8, 13, …，在Fibonacci数列中的数我们称为Fibonacci数。
+给你一个N，你想让其变为一个Fibonacci数，每一步你可以把当前数字X变为X-1或者X+1，现在给你一个数N求最少需要
+多少步可以变为Fibonacci数。
+*//*
 import java.util.Scanner;
 import java.util.*;
 import java.util.Stack;
+public class hhhh{
+    public static int fib(int n){
+        if(n==0){
+            return 0;
+        }
+        if(n==1||n==2){
+            return 1;
+        }
+        return fib(n-1)+fib(n-2);
+    }
 
+    public static void main(String[] args) {
+        Scanner intput=new Scanner(System.in);
+        int N=intput.nextInt();
+        int i=0;
+        for(;i<N;i++){
+            if(fib(i)>=N){
+                break;
+            }
+        }
+        int p=Math.abs(fib(i)-N);//绝对值
+        int q=Math.abs(fib(i-1)-N);
+        if(p>q){
+            System.out.println(q);
+        }else{
+            System.out.println(p);
+        }
+    }
+}*/
+
+
+
+//牛客不通过
+/*public class hhhh{
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        int f1=0;
+        int f2=1;
+        int f3=f1+f2;
+        while(true){
+            if(f2==n){
+                System.out.println(0);
+            }else if(f2>n){
+                if(Math.abs(f2-n)>Math.abs(f1-n)){
+                    System.out.println(Math.abs(f1-n));
+                }else{
+                    System.out.println(Math.abs(f2-n));
+                }
+                break;
+            }
+            f1=f2;
+            f2=f3;
+            f3=f1+f2;
+        }
+    }
+}*/
+
+
+
+
+/*输入一个整数，将这个整数以字符串的形式逆序输出
+程序不考虑负数的情况，若数字含有0，则逆序形式也含有0，如输入为100，则输出为001
+*//*
+public class hhhh{
+    public static void toOut(int num){
+        List<Integer> intNum=new ArrayList<>();
+        while(num>0){
+            intNum.add((num%10));
+            num/=10;
+        }
+        for(int data:intNum){
+            System.out.print(data);
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner in=new Scanner(System.in);
+        int num=in.nextInt();
+        toOut(num);
+    }
+}*/
+
+
+
+
+
+/*输入一个正整数n,求n!(即阶乘)末尾有多少个0？
+比如: n = 10; n! = 3628800,所以答案为2
+分析：
+计算n的阶乘，n的阶乘:n！=1×2×3×…×n那么我们在计算n的阶乘时，实际上就是把所有小于等于n的正整数分解成质因数，
+然后再将其乘到一起，那么末尾0的个数实际上就是2 * 5的个数，而2的个数明显是很多很多的，所以问题就转化成了5的个数。
+ 而只有5的倍数才有5这个因数，所以，问题就进一步简化为小于等于n的数中有多少个数是5的倍数，当然25的倍数，125的倍数，
+ 625还要单独考虑，比如 拿25来说，25=5*5 ，里面有两个5，提供两个0.
+*//*
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int n=scanner.nextInt();
+        int count=0;
+        for(int i=n;i>=5;i--){
+            int tmp=i;
+            while(tmp%5==0){
+                count++;
+                tmp/=5;
+            }
+        }
+        System.out.println(count);
+    }
+}*/
+
+
+
+/*题目：找出n个数里最小的k个
+        输入描述：每个测试输入包含空格分割的n+1个整数，最后一个整数为k值,n 不超过100。
+        输出描述：输出n个整数里最小的k个数。升序输出
+        输入  3 9 6 8 -10 7 -11 19 30 12 23 5
+        输出  -11 -10 3 6 7
+        思路：
+        第一步：设一个List，将输入的数存入list中，这里面，输入的最后一个数为k值，所以要把他分割出来，然后删除；
+        第二步：创建一个数组，将将更新后的list的数存入list中，然后对数组进行排序（从小到大）；
+        第三步：打印出数组的前k个，此处注意打印出的数字打印在同一行并且之间相隔一个空格，但是最后一个数字后面不需要空格；*//*
+
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        List<Integer>list=new ArrayList<>();
+        while(scanner.hasNext()){
+            list.add(scanner.nextInt());
+        }
+        int k=list.get(list.size()-1);
+        list.remove(list.size()-1);
+        int[] array=new int[list.size()];
+        for(int i=0;i<list.size();i++){
+            array[i]=list.get(i);
+        }
+        Arrays.sort(array);
+        for(int i=0;i<k-1;i++){
+            System.out.print(array[i]+" ");
+        }
+        System.out.println(array[k-1]);
+    }
+}
+*/
+
+
+
+
+/*问题：有一个数组a[N]顺序存放0~N-1，要求每隔两个数删掉一个数，到末尾时循环至开头继续进行，求最后一个被删掉的数的原始下标位置。
+以8个数(N=7)为例:｛0，1，2，3，4，5，6，7｝，0->1->2(删除)->3->4->5(删除)->6->7->0(删除),如此循环直到最后一个数被删除。
+        输入：数组的长度，如8；输出：6
+        说明：countDel用来算删除的数的个数；count用来计算两数的间隔；i 是遍历数组的游标; l（length）是数组的长度
+        采用下标标记，将删除的数的下标赋值为-1，遍历数组，当遇到值非-1的就用count计数，count累计为3时，
+        说明当前的这个下标对应的数应当被删除（对应的值置为-1），这时也要累计删除的个数countSize并将count清0。
+        遍历数组时，当游标 i 等于数组长度时，模掉数组长度，如此循环，直到countDel=数组长度时，跳出遍历循环，
+        返回的 i-1  就是最后一个被删除的数的下标。*//*
+public class hhhh{
+    public static int countIndex(int l,int[] index){
+        int i=0;
+        int count=0;
+        int countDel=0;
+        while(true){
+            if(countDel==l){
+                return i-1;
+            }
+            if(i==l){
+                i=i%l;
+            }
+            if(index[i]!=-1){
+                count++;
+            }
+            if(count==3){
+                count=0;
+                countDel++;
+                index[i%l]=-1;
+            }
+            i++;
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        int length;
+        while(scanner.hasNext()){
+            length=scanner.nextInt();
+            int[] index=new int[length];
+            System.out.println(countIndex(length,index));
+        }
+    }
+}*/
+
+
+
+
+
+/*//求最小公倍数
+public class hhhh{
+    private static int gcd(int a,int b){
+        int t;
+        while(b!=0){
+            t=b;
+            b=a%b;
+            a=t;
+        }
+        return a;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int n=sc.nextInt();
+            int m=sc.nextInt();
+            System.out.println((n*m)/gcd(n,m));
+
+        }
+    }
+}*/
+
+
+
+/*public class hhhh{
+    public static int gcd(int a,int b){
+        if(b==0){
+            return a;
+        }
+        int r=a%b;
+        return gcd(b,r);
+    }
+    public static int lcm(int a,int b){
+        return a*b/gcd(a,b);
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lcm(5,6));
+    }
+}*/
+
+
+
+
+/*public class hhhh{
+    public static int lcm(int a,int b){
+        int temp=0;
+        if(a<=0||b==0){
+            return -1;
+        }
+        temp=Math.max(a,b);
+        while(temp%a!=0||temp%b!=0){
+            temp++;
+        }
+    return temp;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(lcm(3,6));
+    }
+
+}*/
+
+
+
+/*public class hhhh{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int num1=sc.nextInt();
+        int num2=sc.nextInt();
+        int count=0;
+        if(num1%4==0||num2%4==0){
+            count=num1*num2/2;
+        }else{
+            count=num1*num2/2+1;
+        }
+        System.out.println(count);
+    }
+}*/
+
+
+
+
+/*
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        while(scanner.hasNext()){//判断集合中是否还有元素可以遍历
+            int y1=scanner.nextInt();
+            int y2=scanner.nextInt();
+            int y3=scanner.nextInt();
+            int y4=scanner.nextInt();
+            int a=(y1+y3)/2;
+            int b=(y2+y4)/2;
+            int c=(y4-y2)/2;
+            if(a-((y1+y3)/2)!=0){
+                System.out.println("No");
+                return;
+            }
+            if(b-((y2+y4)/2)!=0||b-(y3-y1)/2!=0){
+                System.out.println("No");
+                return;
+            }
+            if(c-((y4-y2)/2)!=0){
+                System.out.println("No");
+                return;
+            }
+            System.out.println(a+" "+b+" "+c);
+
+        }
+    }
+}
+*/
 
 
 
@@ -326,9 +734,6 @@ public class hhhh{
     //* 在第一个字母‘a’之后: "abba" 是回文
     //* 在字母‘b’之后: "abba" 是回文
     //* 在第二个字母'a'之后 "abab" 不是回文
-    //NOWCODER.COM
-    //牛客网·互联网名企笔试/面试题库
-    //牛客出品-http://www.nowcoder.com所以满足条件的答案为2
     //输入描述：
     //每组输入数据共两行。
     //第一行为字符串A
