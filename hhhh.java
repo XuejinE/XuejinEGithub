@@ -3,6 +3,103 @@ import com.sun.xml.internal.ws.addressing.WsaActionUtil;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
+
+
+
+
+
+
+
+/*题目：生成格雷码
+在一组数的编码中，若任意两个相邻的代码只有一位二进制数不同，则称这种编码为格雷码(Gray Code)，
+请编写一个函数，使用递归的方法生成N位的格雷码。给定一个整数n，请返回n位的格雷码，顺序为从0开始。
+测试样例：1
+返回：[“0”,“1”]
+分析： 递归的思路就是n位gray码是由n-1位gray码生成。
+比如：
+求n=3的gray码时，先了解n=2的gray码为（00，01，11，10），然后再给各首位添加0或1，
+添加0后变成（000，001，011，010），添加1后需要顺序反向（为了使任意两个相邻的代码只
+有一位二进制数不同）则变成（110，111，101，100），即n=3时其gray码为（000，001，011，010，110，111，101，100）。
+*//*
+public class hhhh {
+    public static String[] getGray(int n) {
+        // write code here
+        if (n == 1) {
+            return new String[]{"0", "1"};
+        }
+        String[] s1 = getGray(n - 1);
+        String[] s2 = new String[2 * s1.length];
+        for (int i = 0; i < s1.length; i++) {
+            s2[i] = "0" + s1[i];//首位添加0
+            s2[i + s1.length] = "1" + s1[s1.length - 1 - i];//首位添加1，注意顺序反向
+        }
+        return s2;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+            int n = scanner.nextInt();
+            System.out.println(Arrays.toString(getGray(n)));
+
+        }
+    }*/
+
+
+
+
+
+
+
+
+
+/*请编写一个函数,函数内不使用任何临时变量,直接交换两个数的值。给定一个int数组AB,其第零个元素和
+第一个元素为待交换的值,请返回交换后的数组。
+测试样例:
+[1,2]
+返回:
+[2,1]
+用加法来解决不用临时变量就能交换的问题
+例如：
+a = 1; b = 2;
+a = a + b = 3;
+b = a(3) - b (2)= a (1)+ b (2)- b(2) = 1;
+a = a(3) - b(1) = a(1) + b(2) - ( a(1) + b(2) - b(2) ) = 2;
+括号里的数字代表的数当前字母的值
+*/
+/*public class hhhh{
+            public int[] exchangeAB(int[] AB) {
+                // write code here
+                AB[1]=AB[0]+AB[1];
+                AB[0]=AB[1]-AB[0];
+                AB[1]=AB[1]-AB[0];
+                return AB;
+            }
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+    }
+}*/
+/*
+//方法二简单方法
+public class hhhh{
+        public int[] exchange(int[] AB){
+          int temp=AB[0];
+          AB[0]=AB[1];
+          AB[1]=temp;
+          return AB;
+        }
+
+
+    public static void main(String[] args) {
+
+    }
+}*/
+
+
+
+/*给定一个数组A[0,1,...,n-1],请构建一个数组B[0,1,...,n-1],其中B中的元素
+B[i]=A[0]*A[1]*...*A[i-1]*A[i+1]*...*A[n-1]。
+不能使用除法（元素可能为0，除以0操作未定义）
+*//*
 public class hhhh{
     public int[] multiply(int[] A){
         int length=A.length;
@@ -13,6 +110,7 @@ public class hhhh{
             for(int i=1;i<B.length;i++){
                 B[i]=B[i-1]*A[i-1];
             }
+            //B[n]就会在第一个循环的时候，计算好，而把B【0】在下一个循环的时候计算好。
             int temp=1;
             //计算上三角
             for(int j=length-2;j>=0;j--){
@@ -26,7 +124,7 @@ public class hhhh{
     public static void main(String[] args) {
 
     }
-}
+}*/
 
 
 
