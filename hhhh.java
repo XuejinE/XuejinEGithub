@@ -3,7 +3,207 @@ import com.sun.xml.internal.ws.addressing.WsaActionUtil;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.math.*;
+/*验证尼科彻斯定理，即：任何一个整数m的立方都可以写成m个连续奇数之和。
+例如：
+1^3=1
+2^3=3+5
+3^3=7+9+11
+4^3=13+15+17+19
+输入描述：
+输入一个int整数
+输出描述：
+输出分解后的String
+解题思路：
+观察规律，m的3次方可以表示成m个连续奇数的和。m的2次方很明显是这m个连续奇数的平均数
+，由此可以找到等式的开始数和结尾数，最后用StringBuffer类的变量和"+"将这m个数连接起来,就得到最终的结果。
+*/
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        while(sc.hasNext()){
+            int n=sc.nextInt();
+            int res=n*n*n;
+            int mid=n*n;
+            StringBuffer sb=new StringBuffer();
+            int begin=mid+1-n;
+            int end=mid-1+n;
+            for(;begin<=end;begin+=2){
+                if(begin==end){
+                    sb.append(begin);
+                    break;
+                }
+                sb.append(begin+"+");
+            }
+            System.out.println(sb.toString());
+        }
+        sc.close();
+    }
+        }
 
+
+
+/*给定数字0-9各若干个。你可以以任意顺序排列这些数字，但必须全部使用。
+目标是使得最后得到的数尽可能小（注意0不能做首位）。例如：
+给定两个0，两个1，三个5，一个8，我们得到的最小的数就是10015558。
+现给定数字，请编写程序输出能够组成的最小的数。
+输入描述:
+每个输入包含1个测试用例。每个测试用例在一行中给出10个非负整数，
+顺序表示我们拥有数字0、数字1、……数字9的个数。整数间用一个空
+格分隔。10个数字的总个数不超过50，且至少拥有1个非0的数字。
+输出描述:
+在一行中输出能够组成的最小的数。
+示例1
+输入
+2 2 0 0 0 3 0 0 1 0
+输出
+10015558
+解题思路：找到所给数字中非零并且最小的数，让它为数字最高位，，然后将剩余元素从小到大依次添加。
+*//*
+public class hhhh {
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        while (in.hasNextInt()) {
+            int[] nums = new int[10];
+            for(int i = 0;i<10;i++){
+                nums[i] = in.nextInt();//该方法的作用是生成一个随机的int值，该值介于[0,n)的区间，也就是0到n之间的随机int值，包含0而不包含n。
+            }
+            System.out.println(GetNum(nums));
+        }
+    }
+    public static String GetNum( int[] nums){
+        String s = "";
+        for(int i = 1; i<10;i++){
+            if(nums[i] != 0){
+                s += i;
+                nums[i] --;
+                break;
+            }
+        }
+        for(int i = 0;i<10;i++){
+            while(nums[i] != 0){
+                s += i;
+                nums[i] --;
+            }
+        }
+        return s;
+    }
+}*/
+
+
+
+
+
+
+/*//设计一个算法完成两个超长正整数的加法
+public class hhhh {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            String a = sc.next();//next()从遇到第一个有效字符（非空格、换行符）开始扫描，
+                                 // 遇到第一个分隔符或结束符（空格’ ‘或者换行符 ‘\n’）时结束
+            String b = sc.next();
+            BigInteger sum = new BigInteger(a);//BigInteger内部用一个int[]数组来模拟一个非常大的整数：
+            BigInteger sum1 = new BigInteger(b);
+            BigInteger res = sum.add(sum1);
+            System.out.println(res);
+        }
+    }
+}*/
+
+
+
+
+
+
+        /*美国总统奥巴马不仅呼吁所有人都学习编程，甚至以身作则编写代码，成为美国历史上
+        首位编写计算机代码的总统。2014 年底，为庆祝“计算机科学教育周”正式启动，奥巴马
+        编写了很简单的计算机代码：在屏幕上画一个正方形。现在你也跟他一起画吧！
+        输入格式：
+        输入在一行中给出正方形边长 N（3≤N≤20）和组成正方形边的某种字符 C，间隔一个空格。
+        输出格式：
+        输出由给定字符 C 画出的正方形。但是注意到行间距比列间距大，所以为了让结果看上去更像
+        正方形，我们输出的行数实际上是列数的 50%（四舍五入取整）。
+        *//*
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        String str = in.nextLine();//nextLine()读取到回车结束也就是“\r”；
+        String[] str2 = new String[str.length()];
+        int pop = 0;
+        int low = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if(str.charAt(i) != ' '){//charAt() 方法用于返回指定索引处的字符。索引范围为从 0 到 length() - 1。
+            }else{
+                str2[pop] = "";
+                for (int j = low; j < i; j++) {
+                    str2[pop] += str.charAt(j); //获取截取的第一个字符串
+                }
+                pop++;
+                low = i + 1;
+            }
+        }
+        str2[pop] = "";
+        for (int j = low; j < str.length(); j++) {
+            str2[pop] += str.charAt(j); //获取截取的第二个字符串
+        }
+        int nums = Integer.parseInt(str2[0]); //边长转换为能用的整数,是将整型数据Integer转换为基本数据类型int
+        String key = str2[1];
+        for (int i = 0; i < (nums + 1) / 2; i++) { //列数为四舍五入之后的数字，所以nums+1
+            if(i == 0 || i == (nums + 1) / 2 - 1){ //第一行和最后一行需要输出一整行
+                for (int j = 0; j < nums; j++) {
+                    System.out.print(key);
+                }
+                if(i == 0){
+                    System.out.println(); //第一行之后需要换行而最后一行不用
+                }
+            }else{
+                for (int j = 0; j < nums; j++) {
+                    if(j == 0 || j == nums - 1){ //只有第一个和最后一个字符需要输出，其他的则是空格即可
+                        System.out.print(key);
+                    }else{
+                        System.out.print(' ');
+                    }
+                }
+                System.out.println(); //每行输出完成之后需要换行
+            }
+        }
+    }
+}*/
+
+
+
+
+/*public class hhhh {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            char c = sc.next().charAt(0);
+            //打印第一行
+            for (int i = 0; i < n; i++) {
+                System.out.print(c);
+            }
+           System.out.println();
+            //打印中间行，先输出一个字符，再输出空格，最后输出字符
+
+            for (int i = 0; i <= Math.ceil((double) n / 2) - 2; i++) {//向上取整应该是“返回 大于等于 参数d的 最小整数,即对浮点数向上取整”。
+                System.out.print(c);
+                System.out.println();
+                for (int j = 2; j <= n - 1; j++) {
+                    //System.out.println("");
+                }
+                System.out.print(c);
+           //     System.out.println();
+            }
+            //打印最后一行
+            for (int i = 0; i < n; i++) {
+                System.out.print(c);
+            }
+            System.out.println();
+        }
+    }*/
+//}
 
 
 
