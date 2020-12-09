@@ -1,9 +1,91 @@
 import com.sun.xml.internal.ws.addressing.WsaActionUtil;
+import sun.applet.Main;
 
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 import java.math.*;
+
+
+
+
+/*小易总是感觉饥饿，所以作为章鱼的小易经常出去寻找贝壳吃。最开始小易在一个初始位置x_0。
+对于小易所处的当前位置x，他只能通过神秘的力量移动到 4 * x + 3或者8 * x + 7。因为使
+用神秘力量要耗费太多体力，所以它只能使用神秘力量最多100,000次。贝壳总生长在能被1,000,000,007
+整除的位置(比如：位置0，位置1,000,000,007，位置2,000,000,014等)。小易需要你帮忙计算最少需
+要使用多少次神秘力量就能吃到贝壳。
+      解题思路：4*x + 3 是2次2 * x + 1的结果，而8 * x + 7 是三次 2 * x + 1的结果，
+每次都进行2 * x + 1，最后再统计出来每次执行3次和执行2次的次数的和就是至少的所求、
+
+*//*
+public class hhhh{
+    public int MinChance(int x){
+        if(x%1000000007==0){
+            return 0;
+        }
+        int count=0;
+        while(x!=0&&count<=300000){
+            x=((x<<1)+1)%1000000007;
+            count++;
+        }
+        int res=(count+2)/3;
+        return res>100000?-1:res;
+    }
+
+    public static void main(String[] args) {
+        hhhh hhhh=new hhhh();
+        Scanner in=new Scanner(System.in);
+        while(in.hasNextInt()){
+            int pop=in.nextInt();
+            int nums= hhhh.MinChance(pop);
+            System.out.println(nums);
+        }
+    }
+}*/
+
+
+
+
+
+/*请编写一个函数，将两个数字相加，不得使用+或其他算术运算符
+* 给定两个int A和B，请返回A+B的值*//*
+*//*首先看十进制是如何做的： 5+7=12，三步走
+第一步：相加各位的值，不算进位，得到2。
+第二步：计算进位值，得到10. 如果这一步的进位值为0，那么第一步得到的值就是最终结果。
+第三步：重复上述两步，只是相加的值变成上述两步的得到的结果2和10，得到12。
+同样我们可以用三步走的方式计算二进制值相加： 5-101，7-111 第一步：相加各位的值，不算进位，
+得到010，二进制每位相加就相当于各位做异或操作，101^111。
+第二步：计算进位值，得到1010，相当于各位做与操作得到101，再向左移一位得到1010，(101&111)<<1。
+第三步重复上述两步， 各位相加 010^1010=1000，进位值为100=(010&1010)<<1。
+继续重复上述两步：1000^100 = 1100，进位值为0，跳出循环，1100为最终结果
+*//*
+public class hhhh{
+    public static int addAB(int A, int B) {
+        // write code here
+        int sum,carry;
+        do{
+            sum=A^B;
+            carry=(A&B)<<1;
+            A=sum;
+            B=carry;
+        }while(carry!=0);
+        return sum;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        int a=sc.nextInt();
+        System.out.println("输入a: ");
+        int b=sc.nextInt();
+        System.out.println("输入b: ");
+        System.out.println(addAB(a,b));
+
+    }
+}*/
+
+
+
+
 /*验证尼科彻斯定理，即：任何一个整数m的立方都可以写成m个连续奇数之和。
 例如：
 1^3=1
@@ -17,29 +99,29 @@ import java.math.*;
 解题思路：
 观察规律，m的3次方可以表示成m个连续奇数的和。m的2次方很明显是这m个连续奇数的平均数
 ，由此可以找到等式的开始数和结尾数，最后用StringBuffer类的变量和"+"将这m个数连接起来,就得到最终的结果。
-*/
+*//*
 public class hhhh{
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-        while(sc.hasNext()){
-            int n=sc.nextInt();
-            int res=n*n*n;
-            int mid=n*n;
-            StringBuffer sb=new StringBuffer();
-            int begin=mid+1-n;
-            int end=mid-1+n;
-            for(;begin<=end;begin+=2){
-                if(begin==end){
+        Scanner sc = new Scanner(System.in);
+        while (sc.hasNext()) {
+            int n = sc.nextInt();
+            int res = n * n * n;
+            int mid = n * n;
+            StringBuffer sb = new StringBuffer();
+            int begin = mid + 1 - n;
+            int end = mid - 1 + n;
+            for (; begin <= end; begin += 2) {
+                if (begin == end) {
                     sb.append(begin);
                     break;
                 }
-                sb.append(begin+"+");
+                sb.append(begin + "+");
             }
             System.out.println(sb.toString());
         }
         sc.close();
     }
-        }
+}*/
 
 
 
