@@ -2,12 +2,145 @@ import com.sun.xml.internal.ws.addressing.WsaActionUtil;
 import sun.applet.Main;
 
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 import java.math.*;
 import java.io.*;
+/*操作给定的二叉树，将其变换为源二叉树的镜像
+问题描述
+将给定的原二叉树变换为镜像二叉树
+*//*
+class TreeNode{
+    int val=0;
+    TreeNode left=null;
+    TreeNode right=null;
+    public TreeNode(int val){
+        this.val=val;
+    }
+}
+public class hhhh{
+    public void Mirror(TreeNode root){
+        if(root==null) return;
+        TreeNode temp=root.left;
+        root.left=root.right;
+        root.right=temp;
+        Mirror(root.left);
+        Mirror(root.right);
+    }
 
+    public static void main(String[] args) {
+
+    }
+}*/
+
+
+
+/*题目描述
+给定一个正整数N代表火车数量，0<N<10，接下来输入火车入站的序列，一共N辆火车，每辆火车以数字
+1-9编号。要求以字典序排序输出火车出站的序列号。 
+输入描述:
+有多组测试用例，每一组第一行输入一个正整数N（0<N<10），第二行包括N个正整数，范围为1到9。
+输出描述:
+输出以字典序从小到大排序的火车出站序列号，每个编号以空格隔开，每个输出序列换行，具体见sample。
+思路：
+先排列出所有可能，再判断是否符合
+*//*
+public class hhhh{
+    public static boolean isLegal(int[] in,int[] out,int n){
+        int i=0;
+        int j=0;
+        Stack<Integer>stack=new Stack<>();//创建一个int类型的栈
+        while(i<n)
+        {
+            if(in[i]==out[i])
+            {
+                i++;
+                j++;
+            }
+            else
+                {
+                if(stack.isEmpty())
+                {
+                    stack.push(in[i]);
+                    i++;
+                }
+                else
+                    {
+                    int top=stack.peek();
+                    if(top==out[j])
+                    {
+                        j++;
+                        stack.pop();
+                    }
+                    else if(i<n)
+                    {
+                        stack.push(in[i]);
+                        i++;
+                    }
+                }
+            }
+        }
+        while(!stack.isEmpty()&&j<n){
+            int top=stack.pop();
+            if(top==out[j])
+                j++;
+            else
+                return false;
+        }
+        return true;
+    }
+
+    //求出所有的排列
+    public static void Permutation(int[] A,int start,int n,ArrayList<int[]> result){//排序
+        if(start==n)
+            return;
+        if(start==n-1){
+            int[] B=A.clone();
+            result.add(B);
+            return;
+        }
+        for(int i=start;i<n;i++){
+            swap(A,i,start);
+            Permutation(A,start+1,n,result);
+            swap(A,i,start);
+        }
+    }
+    public static void swap(int[] A,int i,int j){
+        int tmp=A[i];
+        A[i]=A[j];
+        A[j]=tmp;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        while(scanner.hasNext()){
+            int n=scanner.nextInt();
+            int[] A=new int[n];
+            for(int i=0;i<n;i++)
+                A[i]=scanner.nextInt();
+            ArrayList<int[]> result=new ArrayList<>();
+            int start=0;
+            Permutation(A,start,n,result);
+            Set<String> set=new TreeSet<>();
+            for(int[] out:result){
+                if(isLegal(A,out,n)){
+                    StringBuffer sb=new StringBuffer();
+                    for(int i=0;i<n-1;i++)
+                        sb.append(out[i]+" ");
+                    sb.append(out[n-1]);
+                    set.add(sb.toString());
+                }
+            }
+            for(String s:set)
+                System.out.println(s);
+        }
+    }
+}*/
+
+
+
+
+
+/*
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -34,7 +167,7 @@ public class hhhh{
         }
         System.out.println();
     }
-}
+}*/
 
 
 
