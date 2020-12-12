@@ -5,6 +5,66 @@ import java.lang.reflect.Array;
 import java.util.*;
 import java.math.*;
 import java.io.*;
+/*一个百万富翁遇到一个陌生人，陌生人找他谈了一个换钱的计划。该计划如下：我每天给你10 万元，
+你第一天给我1 分钱，第二天2 分钱，第三天4 分钱……这样交换 30 天后，百万富翁交出了多少钱？
+陌生人交出了多少钱？（注意一个是万元，一个是分）
+ */
+public class hhhh{
+    public static void main(String[] args) {
+        int m=0;
+        int n=0;
+        for(int i=0;i<30;i++){
+            n+=10;
+            m+=(int)(Math.pow(2,i));//Math是double类型，需要强转为int类型
+        }
+        System.out.println(n+" "+m);
+    }
+}
+
+
+
+
+/*一个DNA序列由A/C/G/T四个字母的排列组合组成。G和C的比例（定义为GC-Ratio）是序列
+中G和C两个字母的总的出现次数除以总的字母数目（也就是序列长度）。在基因工程中，这个比例
+非常重要。因为高的GC-Ratio可能是基因的起始点。
+给定一个很长的DNA序列，以及要求的最小子序列长度，研究人员经常会需要在其中找出GC-Ratio最高的子序列。
+输入描述：
+输入一个string型基因序列，和int型子串的长度。
+输出描述：
+找出GC比例最高的子串，如果有多个输出第一个的子串。
+示例：输入AACTGTGCGACCTGA 5，输出GCACG
+思路：
+由题可知，A+C+G+T=n。因此，求G:C最高，即求在长度为n的字符串里出现G和C次数最多的子串。从输入字符串
+下标为0的位置开始，依次遍历n个字符，记录出现C或G的次数，如果高于之前记录的最大值，则更新最大出现次数
+和最大子串开始的下标(i)。
+*//*
+public class hhhh{
+    public static void main(String[] args) {
+        Scanner sc=new Scanner(System.in);
+        String str=sc.next();
+        int n=sc.nextInt();
+        int max=0;
+        int maxIndex=0;
+        for(int i=0;i<str.length()-n;i++){
+            int count=0;
+            for(int j=i;j<i+n;j++){
+                if(str.charAt(j)=='C'||str.charAt(j)=='G'){
+                    count++;
+                }
+                if(count>max){
+                    max=count;
+                    maxIndex=i;
+                }
+            }
+        }
+        System.out.println(str.substring(maxIndex,maxIndex+n));
+    }
+}*/
+
+
+
+
+
 /*操作给定的二叉树，将其变换为源二叉树的镜像
 问题描述
 将给定的原二叉树变换为镜像二叉树
