@@ -5,6 +5,41 @@ import java.util.Calendar;
 import java.util.Scanner;
 public class demo{
     public static void main(String[] args) {
+        MyLinkedList myLinkedList=new MyLinkedList();
+        myLinkedList.addFirst(1);
+        myLinkedList.addFirst(2);
+        myLinkedList.addFirst(3);
+        myLinkedList.addFirst(5);
+        myLinkedList.addFirst(6);
+        myLinkedList.addFirst(3);
+       // myLinkedList.disPlay();
+      /*  myLinkedList.disPlay();
+        myLinkedList.addLast(5);
+        myLinkedList.disPlay();
+        myLinkedList.addIndex(0,1);
+        myLinkedList.addIndex(1,2);
+        myLinkedList.addIndex(2,3);
+        myLinkedList.remove(2);
+        myLinkedList.disPlay();
+        myLinkedList.remove(3);*/
+       /* myLinkedList.removeAllKey(3);
+        myLinkedList.disPlay();
+        myLinkedList.clear();
+        System.out.println("asdfghjkl");
+        myLinkedList.disPlay();
+        System.out.println();*/
+       /* myLinkedList.reverseList();
+        myLinkedList.disPlay();*/
+        Node newHead=myLinkedList.reverseList();
+        myLinkedList.disPlay2(newHead);
+        Node ret=myLinkedList.findKthToTail(1);
+        System.out.println(ret.data);
+    }
+
+
+
+
+ /*   public static void main(String[] args) {
         MyArrayList myArrayList=new MyArrayList();
         myArrayList.add(0,1);
         myArrayList.add(1,2);
@@ -12,8 +47,10 @@ public class demo{
         myArrayList.add(3,4);
         myArrayList.add(4,5);
         myArrayList.disPlay();
+myArrayList.remove(1);
+        myArrayList.disPlay();
 
-    }
+    }*/
 }
 
 
