@@ -25,7 +25,7 @@ public class MyLinkedList {
      public void disPlay() {
      Node cur=this.head;
      while(cur!=null){
-         System.out.println(cur.data+" ");
+         System.out.print(cur.data+" ");
          cur=cur.next;
      }
     }
@@ -122,10 +122,189 @@ public class MyLinkedList {
         cur.next=del.next;
     }
 
-    public boolean contains(int key){
+   /* public boolean contains(int key){
 
-    }
+    }*/
     public void removeAllKey(int key){
+        if(this.head==null) return;
+       Node prev=this.head;
+       Node cur=this.head.next;
+       while(cur!=null){
+           if(cur.data==key){
+               prev.next=cur.next;
+               cur=cur.next;
+           }else{
+               prev=cur;
+               cur=cur.next;
+           }
+       }
+       if(this.head.data==key){
+           this.head=this.head.next;
+       }
 
     }
+
+    //清空链表
+    public void clear(){
+        this.head=null;
+    }
+
+    //翻转链表
+    public Node reverseList(){
+        Node newHead=null;//新链表的头节点
+        Node cur=this.head;//当前需要翻转的节点
+        Node prev=null;//当前需要翻转节点的前驱
+        while(cur!=null){
+            Node curNext=cur.next;
+            if(curNext==null) {
+                newHead = cur;
+            }
+            cur.next=prev;
+            prev=cur;
+            cur=curNext;
+        }
+       return newHead;
+    }
+    public void disPlay2(Node newHead){
+        Node cur=newHead;
+        while(cur!=null){
+            System.out.println(cur.data+" ");
+            cur=cur.next;
+        }
+        System.out.println();
+    }
+
+    public Node middleNode(){
+        Node fast=this.head.next;
+        Node slow=this.head;
+        while(fast!=null&&fast.next!=null){
+          fast=fast.next.next;
+          slow=slow.next;
+        }
+        return slow;
+    }
+    public Node findKthToTail(int k){
+        if(k<=0||this.head==null){
+            return null;
+        }
+        Node fast=this.head;
+        Node slow=this.head;
+
+        while(k-1>0) {
+            if (fast.next != null) {
+                fast = fast.next;
+                k--;
+            } else{
+                System.out.println("K值过大");
+                return null;
+            }
+
+        }
+        while(fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+        }
+        return slow;
+    }
+    public Node partition(int x) {
+        Node bs = null;
+        Node be = null;
+        Node as = null;
+        Node ae = null;
+        Node cur = this.head;
+        while (cur != null) {
+
+            if (cur.data < x) {
+                if (bs == null) {
+                    //第一次插入(尾插）
+                   bs=cur;
+                   be=bs;
+                } else {
+                    be.next=cur;
+                    be=cur;
+                }
+
+            } else {
+                if (as == null) {
+                    //第一次插入（尾插
+                     as=cur;
+                     ae=as;
+                } else {
+                    ae.next=cur;
+                    ae=cur;
+                }
+            }
+            cur = cur.next;
+        }
+        if (bs == null) {
+            return as;
+        }
+        be.next = as;
+        if (as != null) {
+            ae.next = null;
+        }
+        return bs;
+    }
+    public Node deleteDuplication(){
+        Node newHead=new Node(-1);
+        Node tmp=newHead;
+        Node cur=this.head;
+        while(cur!=null){
+            if(cur.next!=null && cur.data==cur.next.data){
+                while(cur.next!=null && cur.data==cur.next.data){
+                    cur=cur.next;
+                }
+                cur=cur.next;
+            }else{
+                tmp.next=cur;
+                tmp=cur;
+                cur=cur.next;
+            }
+        }
+        tmp.next=null;
+        return newHead.next;
+    }
+
+
+    //判断是否是回文结构
+    public boolean chkPalindrome() {
+        if (this.head == null) {
+            return false;
+        }
+        if (this.head.next == null) {
+            return true;
+        }
+        //找到中间节点
+        Node fast=this.head;
+        Node slow=this.head;
+        while(fast!=null&&fast.next!=null){
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+
+
+        //2，翻转
+
+        Node cur=slow.next;
+        while(cur!=null){
+        Node curNext=cur.next;
+        cur.next=slow;
+        slow=cur;
+        cur=curNext;
+        }
+
+
+        //3.判断data是否相同：一个从前往后走，一个从后往后走，直到相遇的时候，--
+
+        while(this.head!=slow){
+            if(this.head.data==slow.data){
+                return false;
+            }
+            this.head=this.head.next;
+            slow=slow.next;
+        }
+        return true;
+       }
+
+
 }
