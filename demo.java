@@ -4,14 +4,95 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Scanner;
 public class demo{
+    public static Node mergeTwoLists(Node headA,Node headB){
+
+        Node newHead=new Node(-1);
+        Node tmp=newHead;
+        //
+        //两个链表当前都有数据
+        while(headA!=null && headB!=null){
+            if(headA.data<headB.data){
+                tmp.next=headA;
+                tmp=tmp.next;
+                headA=headA.next;
+
+            }else{
+                tmp.next=headB;
+                tmp=tmp.next;
+                headB=headB.next;
+            }
+        }
+        //headA!=null && headB!=null
+        if(headA!=null){
+            //headA剩下的所有数据，都是比headB里面的数据大的
+            tmp.next=headA;
+        }
+        if(headB!=null){
+           tmp.next=headB;
+        }
+        return newHead.next;
+    }
+
+
+
+    public static void createCut(Node headA,Node headB){
+        headA.next=headB.next;
+    }
+    public static Node getIntersectionNode(Node headA, Node headB){
+      if(headA==null||headB==null){
+          return null;
+      }
+      int lenA=0;
+      int lenB=0;
+      Node pl=headA;
+      Node ps=headB;
+      while(pl!=null){
+          lenA++;
+          pl=pl.next;
+      }
+        while(ps!=null){
+            lenB++;
+            ps=ps.next;
+        }
+
+        //记住一定要指回来，因为要求长度，上面已经ps和pl都指向了空
+        pl=headA;
+        ps=headB;
+
+       int len=lenA-lenB;//5-6=-1
+        if(len<0){
+            ps=headA;
+            pl=headB;
+            len=lenB-lenA;
+        }
+        //我们能够保证的是pl一定指向的是最长的单链表，ps是指向最短的单链表
+       while(len>0){
+           len--;
+           pl=pl.next;
+       }
+       //说明pl已经走了差值步
+
+        while(pl!=null && ps!=null && pl!=ps){
+            pl=pl.next;
+            ps=ps.next;
+        }
+
+        //还需要判断
+        if(pl==ps && pl!=null && ps!=null){
+            return pl;
+        }
+        //说明方法没结束,也就是没有找到相交点
+        return null;
+    }
+
     public static void main(String[] args) {
-        MyLinkedList myLinkedList=new MyLinkedList();
+        /*MyLinkedList myLinkedList=new MyLinkedList();
         myLinkedList.addFirst(1);
         myLinkedList.addFirst(2);
         myLinkedList.addFirst(3);
         myLinkedList.addFirst(5);
         myLinkedList.addFirst(6);
-        myLinkedList.addFirst(3);
+        myLinkedList.addFirst(3);*/
        // myLinkedList.disPlay();
       /*  myLinkedList.disPlay();
         myLinkedList.addLast(5);
@@ -30,10 +111,31 @@ public class demo{
         System.out.println();*/
        /* myLinkedList.reverseList();
         myLinkedList.disPlay();*/
-        Node newHead=myLinkedList.reverseList();
+       /* Node newHead=myLinkedList.reverseList();
         myLinkedList.disPlay2(newHead);
         Node ret=myLinkedList.findKthToTail(1);
-        System.out.println(ret.data);
+        System.out.println(ret.data);*/
+        MyLinkedList myLinkedList=new MyLinkedList();
+        myLinkedList.addLast(1);
+        myLinkedList.addLast(2);
+        myLinkedList.addLast(3);
+        myLinkedList.addLast(6);
+        myLinkedList.disPlay();
+
+        MyLinkedList myLinkedList2=new MyLinkedList();
+        myLinkedList2.addLast(1);
+        myLinkedList2.addLast(2);
+        myLinkedList2.addLast(3);
+        myLinkedList2.addLast(6);
+        myLinkedList2.addLast(7);
+
+        myLinkedList.disPlay();
+        /*createCut(myLinkedList.head,myLinkedList2.head);
+        Node ret=getIntersectionNode(myLinkedList.head,myLinkedList2.head);
+        System.out.println(ret.data);*/
+
+        Node ret2=mergeTwoLists(myLinkedList.head,myLinkedList2.head);
+        myLinkedList.disPlay2(ret2);
     }
 
 
