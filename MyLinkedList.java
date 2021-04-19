@@ -141,6 +141,10 @@ public class MyLinkedList {
             this.head = this.head.next;
         }
     }
+    //清空链表，回收内存
+    public void clear(){
+        this.head=null;
+    }
 
 
     //逆置一个单链表
@@ -270,37 +274,35 @@ public Node deleteDuplication(int x){
 
 //链表的回文结构{
 public boolean chkPalindrome(){
-        if(this.head==null){
-            return false;
-        }
-        if(this.head.next==null){
-            return true;
-        }
-        //找到中间节点
-        Node fast=this.head;
-        Node slow=this.head;
-        while(fast!=null&&fast.next!=null){
-            fast=fast.next.next;
-            slow=slow.next;
-        }
-        //2.翻转
+if(this.head==null){
+    return false;
+}
+if(this.head.next==null){
+    return true;
+}
+//找到中间节点
+    Node fast=this.head;
+    Node slow=this.head;
+    while(fast!=null && fast.next!=null){
+        fast=fast.next.next;
+        slow=slow.next;
+    }
+    //  翻转
     Node cur=slow.next;
-        while(cur!=null){
-            Node curNext=cur.next;
-            cur.next=slow;
-            slow=cur;
-            cur=curNext;
-        }
-        //3.判断data是否相同：一个从前往后走，一个从后往前走，直到相遇的时候，
+    while(cur!=null){
+        Node curNext=cur.next;
+        cur.next=slow;
+        slow=cur;
+        cur=curNext;
+    }
+    //3.判断data是否相同，一个从前往后走，一个从后往前走，直到相遇的时候
     while(this.head!=slow){
         if(this.head.data==slow.data){
             return false;
         }
         this.head=this.head.next;
-        slow=slow.next;
-    }
+        slow=slow.next;    }
     return true;
-
 }
 
 
