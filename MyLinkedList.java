@@ -287,6 +287,7 @@ if(this.head.next==null){
         fast=fast.next.next;
         slow=slow.next;
     }
+
     //  翻转
     Node cur=slow.next;
     while(cur!=null){
@@ -297,11 +298,47 @@ if(this.head.next==null){
     }
     //3.判断data是否相同，一个从前往后走，一个从后往前走，直到相遇的时候
     while(this.head!=slow){
+
+        //为了偶数节点来实现的
         if(this.head.data==slow.data){
             return false;
         }
         this.head=this.head.next;
         slow=slow.next;    }
+    return true;
+}
+
+//判断链表是否有环
+/*public boolean hasCycle(){
+        Node fast=this.head;
+        Node slow=this.head;
+        while(fast!=null && fast.next!=null){
+            fast=fast.next;
+            slow=slow.next;
+            if(fast==slow){
+                return true;
+            }
+
+        }
+    return false;
+}*/
+
+//判断是否有环，第二种方法
+public boolean hasCycle2(){
+    Node fast=this.head;
+    Node slow=this.head;
+    while(fast!=null && fast.next!=null){
+        fast=fast.next;
+        slow=slow.next;
+        if(fast==slow){
+           break;
+        }
+
+    }
+    //有两种情况
+    if(fast==null || fast.next==null){
+        return false;
+    }
     return true;
 }
 
