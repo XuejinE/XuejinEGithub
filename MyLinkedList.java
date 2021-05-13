@@ -30,24 +30,31 @@ public class MyLinkedList{
   }
 
   //任意位置查插入
-    public boolean checkIndex(int index){
+ public boolean checkIndex(int index){
       if(index<0 || index>getLength()){
-          System.out.println("下标不合法"); 
           return false;
       }
       return true;
-    }
+ }
 
     public int getLength() {
-     int count=0;
-     Node cur=this.head;
-     while(cur!=null){
-         cur=cur.next;
-        count++;
-     }
-     return count;
+      Node cur=this.head;
+      int count=0;
+      while(cur!=null){
+          count++;
+          cur=cur.next;
+      }
+      return count;
     }
-
+    public Node searchPrev(int index){
+      int count=0;
+      Node cur=this.head;
+      while(count<index-1){
+          cur=cur.next;
+          count++;
+      }
+      return cur;
+    }
     public void addIndex(int index,int data){
       if(!checkIndex(index)){
           return;
@@ -61,20 +68,27 @@ public class MyLinkedList{
           return;
       }
       Node cur=searchPrev(index);
-      Node node=new Node(data);
+      Node node =new Node(data);
       node.next=cur.next;
       cur.next=node;
     }
 
-    public Node searchPrev(int index) {
-     Node cur=this.head;
-     int count=0;
-     while(count<index-1){
-         cur=cur.next;
-         count++;
+    //删除链表中出现的12
+   public void deleteNode(int data,int key){
+
+      Node cur=searchPrev(key);
+     if(this.head==null) return;
+     while(cur.data==key) {
+         if (cur.next!= null) {
+
+
+         }else{
+           this.head=this.head.next;
      }
-     return cur;
-    }
+            cur=cur.next;
+
+     }
+   }
 
     public void diaPlay(){
       Node cur=this.head;
