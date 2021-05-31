@@ -1,10 +1,46 @@
-import org.omg.PortableInterceptor.INACTIVE;
-
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Scanner;
 public class demo{
+
+}
+
+
+
+
+
+
+/*public class demo {
+    public static String reverse(String str, int begin, int end) {
+        char[] ch = str.toCharArray();
+        while (begin < end) {
+            char tmp = ch[begin];
+            ch[begin] = ch[end];
+            ch[end] = tmp;
+            begin++;
+            end--;
+        }
+        return new String(ch);
+    }
+
+    public static String reverseK(String str, int k) {
+        if (str == null || k <= 0 || k >= str.length()) {
+            return null;
+        }
+        str = reverse(str, 0, k - 1);
+        str = reverse(str, k, str.length() - 1);
+        str = reverse(str, 0, str.length() - 1);
+        return str;
+
+    }
+
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int k = scanner.nextInt();
+        String str = scanner.next();
+        String ret = reverseK(str, k);
+        System.out.println(ret);
+
+
+
+  /*  public static void main3(String[] args) {
         String str="     abcd   dsfas   ";
         System.out.println(str.trim());
         System.out.println(str.toUpperCase());
@@ -15,9 +51,27 @@ public class demo{
         String str4=null;
         System.out.println(str3.isEmpty());
         System.out.println(str4.isEmpty());
-    }
+    }*/
 
+/*public static String reverse1(String str,int begin,int end){
+        char[] ch=str.toCharArray();
+        while(begin<end){
+           char tmp=ch[begin];
+           ch[begin]=ch[end];
+           ch[end]=tmp;
+           begin++;
+           end--;
+        }
+        return new String(ch);
+       // return String.copyValueOf(ch);//
 
+}
+
+    public static void main4(String[] args) {
+       String str="abcdef";
+       String ret=reverse(str,0,str.length()-1);
+        System.out.println(ret);
+    }*/
 
 /*
 * 以空格进行拆分的函数实现
@@ -25,7 +79,7 @@ public class demo{
 public static String[] mySplit(String splitStr){
 
 }*/
-
+/*
    public static boolean isNumber(String str){
        for(int i=0;i<str.length();i++){
            char ch=str.charAt(i);
@@ -57,7 +111,7 @@ public static String func(String str){
        String str=scanner.nextLine();
         System.out.println(isNumber(str));
     }
-}
+}*/
 
 
 
